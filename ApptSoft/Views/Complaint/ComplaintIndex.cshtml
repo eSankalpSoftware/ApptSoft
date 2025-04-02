@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "ComplaintIndex";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/Complaint.js"></script>
+
+
+<section class="section">
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Complaint</h5>
+
+
+                    <!-- Floating Labels Form -->
+                    <input id="hdnid" type="hidden" />
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="hidden" id="hdnId" />
+                                <select type="text" class="form-control" id="txtFlatNo" ></select>
+                                <label for="floatingFlat No">Flat No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="txtComplaintDate">
+                                <label for="floatingComplaint Date">Complaint Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtTitle" placeholder="Complaint Title">
+                                <label for="floatingComplaint Title">Complaint Title</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Enter Complaint" id="txtComplaint" style="height: 100px;"></textarea>
+                                        <label for="floatingTextarea">Complaint</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Enter Complaint Discription" id="txtDiscription" style="height: 100px;"></textarea>
+                                        <label for="floatingTextarea">Complaint Discription</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtResolvedBy" placeholder="Resolved By">
+                                <label for="floatingResolved By"> Resolved By</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="Date" class="form-control" id="txtResolvedDate">
+                                <label for="floatingResolved Date">Resolved Date</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="file" class="form-control" id="file1">
+                                <label for="floatingResolved Proof">Resolved Proof</label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" onclick="SaveComplaint()">SUBMIT</button>
+                            <button type="reset" class="btn btn-warning">RESET</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+
+            @*<div class="card p-3">
+                        <div class="row my-2 mt-1">
+                            <div class="col-md-12 text-end">
+                                <button onclick="AddComplaint
+                ()" class="btn btn-primary btn-sm">Add Complaint</button>
+                            </div>
+                        </div>
+                    </div>*@
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Complaint Box</h5>
+
+                    <div class="table-responsive">
+                        <table id="tblComplaints" class="table table-bordered table-hover">
+                            <thead class="text-white bg-dark">
+                                <tr>
+                                    @*<td class="text-white bg-dark">ID</td>*@
+                                    <td class="text-white bg-dark">FlatNo</td>
+                                    <td class="text-white bg-dark">Title</td>
+                                    @*<td class="text-white bg-dark">Description</td>*@
+                                    <td class="text-white bg-dark">Complaint</td>
+                                    <td class="text-white bg-dark">ComplaintDate</td>
+                                    @*<td class="text-white bg-dark">Statuse</td>
+                                        <td class="text-white bg-dark">ResolvedBy</td>
+                                        <td class="text-white bg-dark">ResolveDate</td>*@
+                                    @*<td class="text-white bg-dark">Proof</td>*@
+                                    @*<td class="text-white bg-dark">CreateBy</td>
+                                        <td class="text-white bg-dark">CreateDate</td>
+                                        <td class="text-white bg-dark">UpdateBy</td>
+                                        <td class="text-white bg-dark">UpdateDate</td>*@
+                                    @*<td class="text-white bg-dark">Operation</td>*@
+
+                                    <td class="text-white bg-dark"></td>
+                                </tr>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*@DetailPOPUP@*@
+
+<div id="ComplaintModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container" id="ComplaintDetail">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*AutoFocus*@
+<script>
+    window.onload = function () {
+        document.getElementById("txtFlatNo").focus();
+    }
+</script>

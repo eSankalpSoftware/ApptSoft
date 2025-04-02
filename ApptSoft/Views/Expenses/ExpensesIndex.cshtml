@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "ExpensesIndex";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/Expenses.js"></script>
+
+<section class="section">
+
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="card">
+                <iv class="card-body">
+                    <h5 class="card-title">Expenses</h5>
+
+
+                    <!-- Floating Labels Form -->
+                    <input id="hdnId" type="hidden" />
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtTitle" placeholder="Enter Flat No">
+                                <label for="FlatNo"> Title</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select type="text" class="form-control" id="txtFlatNo"></select>
+                                <label for="FlatNo"> FlatNo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtPaidBy" placeholder="PaidBy">
+                                <label for="PaidBy"> PaidBy</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtAmount" placeholder="Amount">
+                                <label for="Amount">Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtPaidAmount" placeholder="PaidAmount">
+                                <label for="PaidAmount">PaidAmount</label>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <select class="form-control" id="txtMonth">
+                                    <option value='January'>January</option>
+                                    <option value='February'>February</option>
+                                    <option value='March'>March</option>
+                                    <option value='April'>April</option>
+                                    <option value='May'>May</option>
+                                    <option value='June'>June</option>
+                                    <option value='July'>July</option>
+                                    <option value='August'>August</option>
+                                    <option value='September'>September</option>
+                                    <option value='October'>October</option>
+                                    <option value='November'>November</option>
+                                    <option value='December'>December</option>
+                                </select>
+                                <label for="PaidAmount">Month</label>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <select class="form-control" id="txtYear">
+                                    <option value='2021'>2021</option>
+                                    <option value='2022'>2022</option>
+                                    <option value='2023'>2023</option>
+                                    <option value='2024'>2024</option>
+                                    <option value='2025'>2025</option>
+                                    <option value='2026'>2026</option>
+                                    <option value='2027'>2027</option>
+                                    <option value='2028'>2028</option>
+                                    <option value='2029'>2029</option>
+                                    <option value='2030'>2030</option>
+                                    <option value='2031'>2031</option>
+                                    <option value='2032'>2032</option>
+                                </select>
+                                <label for="PaidAmount">Year</label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <select class="form-control" id="txtPaymentMode">
+                                    <option select value="">Select Payment Method</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="DD">DD</option>
+                                    <option value="NEFT">NEFT</option>
+                                    <option value="RTGS">RTGS</option>
+                                    <option value="IMPS">IMPS</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Net Banking">Net Banking</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="PhonePe">PhonePe</option>
+                                    <option value="GooglePay">GooglePay</option>
+                                    <option value="Paytm">Paytm</option>
+                                    <option value="Paypal">Paypal</option>
+                                </select>
+                                <label for="PaidAmount">Payment Mode</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtTransactionNo" placeholder="Transaction No">
+                                <label for="PaidBy"> Transaction No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="file1" placeholder="Receipt">
+                                <label for="PaidBy">Receipt</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" onclick="SaveExpensesData()">SUBMIT</button>
+                            <button type="reset" class="btn btn-warning">RESET</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div class="card">
+                <div class="card-body">
+
+
+                    <div class="table-responsive">
+                        <div align="left">
+                            <b> <span id="lblamount"></span></b><br />
+                            <b> <span id="lblPaidamount"></span></b><br />
+                            <br />
+                        </div>
+                        <table id="tblExpens" class="table table-bordered table-hover">
+                            <thead class="text-white bg-dark">
+                                <tr>
+                                    @*<td class="text-white bg-dark">Id</td>*@
+                                    <td class="text-white bg-dark">flatNo</td>
+                                    <td class="text-white bg-dark">Title</td>
+                                    <td class="text-white bg-dark">Month</td>
+                                    <td class="text-white bg-dark">Year</td>
+                                    <td class="text-white bg-dark">Amount</td>
+                                    <td class="text-white bg-dark">PaidAmount</td>
+                                    <td class="text-white bg-dark">PaidDate</td>
+                                    <td class="text-white bg-dark">PaidBy</td>
+                                    @*<td class="text-white bg-dark">Receipt</td>*@
+                                    @*<td class="text-white bg-dark">PaymentMode</td>*@
+                                    @*<td class="text-white bg-dark">TransactionNo</td>*@
+                                    @*<td class="text-white bg-dark">Receipt</td>*@
+                                    @*<td class="text-white bg-dark">CreateBy</td>
+                                        <td class="text-white bg-dark">CreateDate</td>
+                                        <td class="text-white bg-dark">UpdateBy</td>
+                                        <td class="text-white bg-dark">UpdateDate</td>*@
+                                    @*<td class="text-white bg-dark">Operations</td>
+                                        <td class="text-white bg-dark">Operations</td>*@
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*@DetailPOPUP@*@
+
+
+    <div id="ExpensesModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container" id="DetailExpenses">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+@*AutoFocus*@
+<script>
+    window.onload = function () {
+        document.getElementById("txtTitle").focus();
+    }
+</script>
